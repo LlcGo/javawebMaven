@@ -82,4 +82,60 @@
         <servlet-name>loginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
+
+
+<!--    部署第一个过滤器-->
+    <filter>
+        <filter-name>helloFilter</filter-name>
+        <filter-class>com.lc.HelloFilter</filter-class>
+<!--        过滤器内置初始化参数-->
+        <init-param>
+            <param-name>filterKey</param-name>
+            <param-value>lc666</param-value>
+        </init-param>
+    </filter>
+    <!--    部署第Frist过滤器-->
+    <filter>
+        <filter-name>fristFilter</filter-name>
+        <filter-class>com.lc.FristFilter</filter-class>
+    </filter>
+    <!--    部署第Frist过滤器-->
+    <filter>
+        <filter-name>scoendFilter</filter-name>
+        <filter-class>com.lc.ScoendFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>charaterEncodingFilter</filter-name>
+        <filter-class>com.lc.CharaterEncodingFilter</filter-class>
+<!--        局部指定所有 参数-->
+        <init-param>
+            <param-name>enconding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+    </filter>
+
+
+
+
+
+
+
+<!--    多个过滤器可以形成过滤器链,前一个会给后一个过滤直到全部放行，到目标应用程序，只要其中一个过滤拦截-->
+    <filter-mapping>
+        <filter-name>helloFilter</filter-name>
+        <url-pattern>/filter.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>fristFilter</filter-name>
+        <url-pattern>/filterChain.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>scoendFilter</filter-name>
+        <url-pattern>/filterChain.jsp</url-pattern>
+    </filter-mapping>
+<!--    字符集拦截所有请求所有请求都要字符集设置-->
+    <filter-mapping>
+        <filter-name>charaterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 </web-app>

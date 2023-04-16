@@ -33,6 +33,9 @@ public class LoginServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //中文进来会出现乱码
+        //乱码了就去过滤器里面 设置
+
         //模拟用户登录
         String uname = req.getParameter("uname");
         String upwd = req.getParameter("upwd");
