@@ -28,8 +28,6 @@
        </servlet>
 
 
-
-
 <!--    映射第一个servlet应用程序 指定当前servlet可以处理哪些请求（请求喝处理的映射关系）-->
        <servlet-mapping>
 <!--           指定容器中的servlet应用程序的别民，必须存在的-->
