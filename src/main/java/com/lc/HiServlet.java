@@ -22,6 +22,9 @@ public class HiServlet implements Servlet {
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
         System.out.println("------HelloServlet init2-------");
+        //读取全局配置context
+        String contextKey = servletConfig.getServletContext().getInitParameter("contextKey");
+        System.out.println("HiServlet 里面获取 全局参数" + contextKey);
 
     }
 

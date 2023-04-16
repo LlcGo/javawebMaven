@@ -2,6 +2,7 @@ package com.lc;
 
 import javax.servlet.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * @Author Lc
@@ -43,6 +44,15 @@ public class HelloServlet implements Servlet {
     @Override
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
         System.out.println("------HelloServlet  service-------");
+        //获取请求参数,于jsp中接收参数一致
+        String username = servletRequest.getParameter("username");
+        System.out.println("username="+username);
+        //响应结果
+        //1.直接响应数据
+//        PrintWriter out = servletResponse.getWriter();
+//        out.print("Success");
+        //2.直接通过转发或者重定向跳转页面
+        servletRequest.getRequestDispatcher("success.jsp").forward(servletRequest,servletResponse);
     }
 
     @Override

@@ -26,7 +26,27 @@
 <!--           0或者正整数，指定servlet创建初始化次序，值越小，越先实例化，初始化-->
            <load-on-startup>2</load-on-startup>
        </servlet>
+<!-- 部署第三个servlet httpservlet方式-->
+       <servlet>
+           <servlet-name>loginServlet</servlet-name>
+           <servlet-class>com.lc.LoginServlet</servlet-class>
+           <init-param>
+               <param-name>initName</param-name>
+               <param-value>lc</param-value>
+           </init-param>
+           <init-param>
+               <param-name>initPwd</param-name>
+               <param-value>123456</param-value>
+           </init-param>
+       </servlet>
 
+
+
+<!--    配置全局参数,容器内所有的servlet都可以获取，也可以配置多个-->
+       <context-param>
+           <param-name>contextKey</param-name>
+           <param-value>lc</param-value>
+       </context-param>
 
 
 
@@ -50,8 +70,16 @@
     <servlet-mapping>
         <servlet-name>hiServlet</servlet-name>
 <!--        写法1/xxx/*,已xxx开头的所有请求-->
-<!--        写法*.xxx,已xxx为结尾的所有请求-->
+<!--        写法2*.xxx,已xxx为结尾的所有请求-->
 <!--        <url-pattern>/lc/*</url-pattern>-->
+
         <url-pattern>*.do</url-pattern>
+        <!--        以上俩种模糊匹配的写法不可以同时使用-->
+<!--        <url-pattern>/lc/*.do</url-pattern>-->
+    </servlet-mapping>
+<!--    第三个映射-->
+    <servlet-mapping>
+        <servlet-name>loginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
 </web-app>
