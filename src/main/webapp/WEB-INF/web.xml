@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         id="WebApp_ID" version="3.1">
+<!--       部署第一个servlet-->
+<!--       创建的servlet应用程序，必须部署到应用服务器web.xml，交给tomcat管理，才可以生效-->
+       <servlet>
+<!--           指定当前部署servlet应用程序的别名，可以随意定义，最好还是首字母小写-->
+           <servlet-name>helloServlet</servlet-name>
+<!--           指定部署serlet应用程序的全类名-->
+           <servlet-class>com.lc.HelloServlet</servlet-class>
+<!--          指定Servlet应用程序初始化参数，必须配置servlet标签内-->
+           <init-param>
+               <param-name>inintKey</param-name>
+               <param-value>LC666</param-value>
+           </init-param>
+<!--           必须写在init后面-->
+<!--           创建serlet应用程序实例化实际，默认情况下不会创建实例，只有配置了,才在容器启动时候自动创建-->
+           <load-on-startup>1</load-on-startup>
+       </servlet>
+    <!--       部署第二个servlet-->
+       <servlet>
+           <servlet-name>hiServlet</servlet-name>
+           <servlet-class>com.lc.HiServlet</servlet-class>
+<!--           0或者正整数，指定servlet创建初始化次序，值越小，越先实例化，初始化-->
+           <load-on-startup>2</load-on-startup>
+       </servlet>
+
+
+
+
+<!--    映射第一个servlet应用程序 指定当前servlet可以处理哪些请求（请求喝处理的映射关系）-->
+       <servlet-mapping>
+<!--           指定容器中的servlet应用程序的别民，必须存在的-->
+           <servlet-name>helloServlet</servlet-name>
+<!--           可以访问到servlet应用程序的有效路径-->
+           <url-pattern>/hello</url-pattern>
+       </servlet-mapping>
+       <servlet-mapping>
+           <servlet-name>hiServlet</servlet-name>
+           <url-pattern>/hi</url-pattern>
+       </servlet-mapping>
+<!--    一个servlet可以配置多个-->
+    <servlet-mapping>
+        <servlet-name>hiServlet</servlet-name>
+        <url-pattern>/hi2</url-pattern>
+    </servlet-mapping>
+<!--    模糊匹配写法-->
+    <servlet-mapping>
+        <servlet-name>hiServlet</servlet-name>
+<!--        写法1/xxx/*,已xxx开头的所有请求-->
+<!--        写法2*.xxx,已xxx为结尾的所有请求-->
+<!--        <url-pattern>/lc/*</url-pattern>-->
+
+        <url-pattern>*.do</url-pattern>
+        <!--        以上俩种模糊匹配的写法不可以同时使用-->
+<!--        <url-pattern>/lc/*.do</url-pattern>-->
+    </servlet-mapping>
+</web-app>
