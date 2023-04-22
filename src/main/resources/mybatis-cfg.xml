@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--    引入jdbc文件-->
+    <properties resource="database.properties"/>
+
+
+    <environments default="development">
+        <!--        使用id是唯一的表示不能重复-->
+        <environment id="development">
+            <!--            设置事务管理jdbc自己管理 Manage 表示可以被框架管理比如spring-->
+            <transactionManager type="JDBC"/>
+            <!--            POOLED使用数据库连接池连接数据 unpooled不用数据库连接池连接数据-->
+            <!--            JNDI使用上下文中的数据源-->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://192.168.190.100:3306/week_db?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--引入映射文件-->
+    <mappers>
+        <!--        <mapper resource="mapper/Usermapper.xml"/>-->
+        <!--        全路径包名一致，类名字一致-->
+        <mapper resource="com/lc/bbs/dao/mappers/CategoryMapper.xml"/>
+    </mappers>
+</configuration>

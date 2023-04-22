@@ -1,7 +1,7 @@
 <html>
 <body>
 <script>
-    location.href="/details";
+    location.href="/addressRequest.jsp";
 </script>
 </body>
 </html>
